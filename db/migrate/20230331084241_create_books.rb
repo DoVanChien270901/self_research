@@ -3,7 +3,7 @@ class CreateBooks < ActiveRecord::Migration[7.0]
     create_table :books do |t|
       t.string :title, unique: true
       t.string :publisher
-      t.string :genre
+      t.integer :price
       t.timestamps
     end
   end

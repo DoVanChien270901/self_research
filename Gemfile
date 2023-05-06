@@ -53,6 +53,8 @@ group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
 
   gem 'pry-byebug'
+
+  gem 'awesome_print'
 end
 
 group :development do
@@ -78,8 +80,19 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'elasticsearch-model'
+gem 'activerecord-import'
+
+gem 'chewy', '7.2.4'
+
+gem 'slim'
 
 gem 'elasticsearch-rails'
 
-gem 'activerecord-import'
+gem 'elasticsearch-model'
+
+gem 'bootstrap', '~> 5.1.3'
+
+gem 'sass-rails'
+
+gem 'kaminari'
+
