@@ -1,0 +1,27 @@
+.main_search
+  = form_with url: root_path, method: :get do |f|
+    = f.text_field :kw, class: 'keyword'
+    = submit_tag 'Search', class: 'btn-submit'
+h4 class= 'd-flex justify-content-center' Total: #{@books_count}
+.main_content_search
+  div class=['left_content', 'share']
+    ul
+      - @facet.each do |item|
+        li
+          label id='author-check'
+            span #{@authors[item["key"]].a_name}: #{item["doc_count"]}
+            input type='checkbox' id='author-check'
+          ul class=['down-content']
+            - item["genres"]["buckets"].each do |item|
+              li
+                span #{@genres[item["key"]].g_name}: #{item["doc_count"]}
+  div class=['middle_content', 'share']
+    .row
+      - @books.each do |item|
+        div class=['book__product col-3']
+          span.book--title #{item.title}
+          .book--body
+            = image_tag 'default_book.jpg', size: '135x200'
+            p #{item.publisher}
+            p #{@genres[item.genre_id].g_name}
+            p #{@authors[item.author_id].a_name}
