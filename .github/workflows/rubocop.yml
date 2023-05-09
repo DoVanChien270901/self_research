@@ -27,3 +27,5 @@ jobs:
           output: |
             ### RuboCop report
             $(cat rubocop-report.md)
+    permissions:
+      checks: write
