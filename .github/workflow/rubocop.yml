@@ -1,0 +1,29 @@
+name: RuboCop
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: $(cat .ruby-version)
+      - name: Install dependencies
+        run: bundle install
+      - name: RuboCop
+        run: bundle exec rubocop --format github --out rubocop-report.md
+      - name: Create check
+        uses: actions/create-check-run@v1
+        with:
+          name: RuboCop
+          status: completed
+          conclusion: ${{ job.status }}
+          output: |
+            ### RuboCop report
+            $(cat rubocop-report.md)
