@@ -5,10 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Read Ruby version from .ruby-version
+      run: echo "RUBY_VERSION=$(cat .ruby-version)" >> $GITHUB_ENV
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: $(cat .ruby-version)
+        ruby-version: ${{ env.RUBY_VERSION }}
     - name: Install gems
       run: gem install rubocop
     - name: Run Rubocop
