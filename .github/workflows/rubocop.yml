@@ -5,6 +5,21 @@ on:
     branches:
       - main
 
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  issues: write
+  discussions: write
+  packages: write
+  pages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+
 jobs:
   rubocop:
     runs-on: ubuntu-latest
@@ -27,5 +42,38 @@ jobs:
           output: |
             ### RuboCop report
             $(cat rubocop-report.md)
-    permissions:
-      checks: write
+        env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+
+name: Rubocop
+
+on: [push]
+
+permissions:
+  actions: read|write
+  checks: read|write
+  contents: read|write
+  deployments: read|write
+  id-token: read|write
+  issues: read|write
+  discussions: read|write
+  packages: read|write
+  pages: read|write
+  pull-requests: read|write
+  repository-projects: read|write
+  security-events: read|write
+  statuses: read|write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Rubocop Linter Action
+      uses: andrewmcodes/rubocop-linter-action@v3.0.0.rc2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
