@@ -32,7 +32,7 @@ module Import
       def authors
         puts '  ==> import  master author...'
         arr_authors = []
-        for _i in 1..SIZE
+        (1..SIZE).each do |_i|
           author = Author.new(a_name: Faker::Book.author)
           arr_authors << author
         end
@@ -43,7 +43,7 @@ module Import
       def genres
         puts ' ==> import master genres'
         arr_genres = []
-        for _i in 1..SIZE
+        (1..SIZE).each do |_i|
           author = Genre.new(g_name: Faker::Book.author)
           arr_genres << author
         end
