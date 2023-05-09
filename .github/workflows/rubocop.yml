@@ -3,19 +3,19 @@ name: Rubocop
 on: [push]
 
 permissions:
-  actions: maintain
-  checks: maintain
-  contents: maintain
-  deployments: maintain
-  id-token: maintain
-  issues: maintain
-  discussions: maintain
-  packages: maintain
-  pages: maintain
-  pull-requests: maintain
-  repository-projects: maintain
-  security-events: maintain
-  statuses: maintain
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  issues: write
+  discussions: write
+  packages: write
+  pages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 
 jobs:
   build:
