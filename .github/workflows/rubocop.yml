@@ -1,5 +1,9 @@
 name: Rubocop checks
-on: [push, pull_request]
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
 jobs:
   rubocop:
     runs-on: ubuntu-latest
