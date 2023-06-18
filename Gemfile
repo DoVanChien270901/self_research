@@ -96,3 +96,6 @@ gem 'sass-rails'
 
 gem 'kaminari'
 
+gem 'mechanize'
+
+gem 'nokogiri' # css query selecter
