@@ -10,29 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_091042) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_03_013150) do
   create_table "authors", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "a_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["a_name"], name: "index_authors_on_a_name", unique: true
   end
 
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "title"
+    t.string "binding"
     t.string "publisher"
-    t.integer "price"
+    t.string "language"
+    t.string "image_src"
+    t.float "price"
+    t.date "release_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "author_id"
-    t.bigint "genre_id"
     t.index ["author_id"], name: "index_books_on_author_id"
-    t.index ["genre_id"], name: "index_books_on_genre_id"
-  end
-
-  create_table "genres", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.string "g_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

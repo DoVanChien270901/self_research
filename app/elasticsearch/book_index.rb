@@ -1,8 +1,11 @@
 class BookIndex < Indices::BaseIndex
   index_scope :books do
-    field :title, :publisher
-    filed :genre_id, type: 'integer'
+    field :title, type: 'string'
+    filed :binding, type: 'string'
     field :author_id, type: 'integer'
-    field :created_at, type: 'date'
+    field :publisher, type: 'date'
+    field :language, type: 'date'
+    field :price, type: 'float'
+    field :release_date, type: 'string'
   end
 end
