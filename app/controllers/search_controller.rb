@@ -1,6 +1,16 @@
 class SearchController < ApplicationController
   def index
-    @data = BookIndex.simple_query_string(keyword: param[:kw], page: param[:page]).load
-    puts @data.to_h
+    @authors = Author.all.index_by(&:id)
+    @data = BookIndex.simple_query_string(keyword: params[:kw])
+    @aggregations =
+      Book.search(
+        aggs: {
+          avg_by_author: {
+            terms: {
+              field: :author_id
+            }
+          }
+        },
+      ).aggregations[:avg_by_author][:buckets]
   end
 end

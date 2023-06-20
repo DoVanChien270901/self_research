@@ -80,8 +80,6 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'activerecord-import'
-
 gem 'chewy', '7.2.4'
 
 gem 'slim'
@@ -99,3 +97,5 @@ gem 'kaminari'
 gem 'mechanize'
 
 gem 'nokogiri' # css query selecter
+
+gem 'font-awesome-sass'

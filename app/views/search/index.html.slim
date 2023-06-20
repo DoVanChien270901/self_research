@@ -1,9 +1,38 @@
-.nav-belt
-  .nav-left
-    = image_tag 'logo_1.png'
-  .nav-fill
-    .search_container
-      .nav-left
-      .nav-fill
-      .nav-right
-  .nav-right
+doctype html
+html
+  head
+    meta charset="UTF-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title BooksWagon - Search Books
+    / Bootstrap CSS
+    link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  body
+    .form-search.mt-6
+      .search-form
+        .form-inline
+          = form_with url: search_path, method: :get do |f|
+            .form-group.mx-sm-3.mb-2
+              = f.text_field :kw, class: 'form-control', placeholder: 'Search by Title, Author, Publishher', style: 'width: 700px'
+              button type="submit" class="btn btn-primary ml-2"
+                i class="fa-solid fa-magnifying-glass"
+    .main-container
+      .left-content
+        h1 Search by author
+        ul
+          - @aggregations.each do |author|
+            li
+              | #{@authors[author['key']].a_name}: 
+              | #{author['doc_count']}
+      .right-content
+        - @data.each do |book|
+          div.book-card.row
+            = image_tag book.image_src, size: '50x260', class: 'col-6'
+            .col-6
+              p.card-title = book.title
+              p.card-author By: #{book.author.a_name}
+              p.card-publisher Publishher: #{book.publisher}
+              p.card-publisher Binding: #{book.binding}
+              p.card-publisher Release: #{book.release_date}
+              p.card-publisher Language: #{book.language}
+
+              a.btn.btn-primary href="#" Buy Now
